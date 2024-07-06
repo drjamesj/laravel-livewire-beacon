@@ -1,11 +1,11 @@
-# Beacon
+# Livewire Beacon
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/executable/laravel-livewire-beacon.svg?style=flat-square)](https://packagist.org/packages/executable/laravel-livewire-beacon)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/drjamesj/laravel-livewire-beacon/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/drjamesj/laravel-livewire-beacon/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/drjamesj/laravel-livewire-beacon/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/drjamesj/laravel-livewire-beacon/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/executable/laravel-livewire-beacon.svg?style=flat-square)](https://packagist.org/packages/executable/laravel-livewire-beacon)
 
-Beacon enables websocket communication for Livewire dramatically improving user experience and enabling more features.
+Livewire Beacon enables websocket communication for Livewire dramatically improving user experience and enabling more features.
 
 ## Requirements
 
@@ -36,7 +36,7 @@ Next, edit your app's layout to include the Beacon javascript assets. This is be
 
 ## Configuration
 
-Beacon is designed to work seamlessly without further configuration.
+Livewire Beacon is designed to work seamlessly without further configuration.
 
 If you'd like to modify some internal behaviour of this package, you can publish the config file with:
 
