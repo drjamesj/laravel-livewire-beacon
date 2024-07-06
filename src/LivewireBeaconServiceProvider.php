@@ -26,12 +26,16 @@ class LivewireBeaconServiceProvider extends PackageServiceProvider
 
     public function packageBooted()
     {
+        Blade::directive('livewireBeaconScripts', [LivewireBeacon::class, 'livewireBeaconScripts']);
+
+        if (! config('livewire-beacon.enabled', true)) {
+            return;
+        }
+
         Event::listen(
             MessageReceived::class,
             ReverbMessageReceivedListener::class,
         );
-
-        Blade::directive('livewireBeaconScripts', [LivewireBeacon::class, 'livewireBeaconScripts']);
 
         $route = Route::get(
             config('app.debug') ? '/livewire/beacon.js' : 'livewire/beacon.min.js',

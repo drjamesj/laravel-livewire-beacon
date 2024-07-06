@@ -10,6 +10,10 @@ class LivewireBeacon
 
     public static function livewireBeaconScripts($expression)
     {
+        if (! config('livewire-beacon.enabled', true)) {
+            return;
+        }
+
         return '{!! \Executable\LivewireBeacon\LivewireBeacon::scripts('.$expression.') !!}';
     }
 
