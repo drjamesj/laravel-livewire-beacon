@@ -1,69 +1,52 @@
-# :package_description
+# Beacon
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/executable/laravel-livewire-beacon.svg?style=flat-square)](https://packagist.org/packages/executable/laravel-livewire-beacon)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/executable/laravel-livewire-beacon/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/executableAU/laravel-livewire-beacon/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/executable/laravel-livewire-beacon/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/executableAU/laravel-livewire-beacon/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/executable/laravel-livewire-beacon.svg?style=flat-square)](https://packagist.org/packages/executable/laravel-livewire-beacon)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+Beacon enables websocket communication for Livewire dramatically improving user experience and enabling more features.
 
-## Support us
+## Requirements
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+This package provides a thin layer that sits on top of [Laravel Livewire](https://livewire.laravel.com/) and [Laravel Reverb](https://reverb.laravel.com/) as the core requirements.
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+-   Laravel Livewire installed ([docs](https://livewire.laravel.com/docs/installation))
+-   Laravel Reverb installed ([docs](https://laravel.com/docs/11.x/reverb))
+-   Laravel Echo installed and served on frontend ([docs](https://laravel.com/docs/11.x/broadcasting#client-side-installation))
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require executable/laravel-livewire-beacon
 ```
 
-You can publish and run the migrations with:
+Next, edit your app's layout to include the Beacon javascript assets. This is best done by adding the Blade directive `@livewireBeaconScripts` just before the closing `body` tag.
+
+```
+<!-- resources/views/layouts/app.blade.php -->
+
+    @livewireBeaconScripts
+</body>
+
+</html>
+```
+
+## Configuration
+
+Beacon is designed to work seamlessly without further configuration.
+
+If you'd like to modify some internal behaviour of this package, you can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="laravel-livewire-beacon-config"
 ```
 
 ## Usage
 
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
-```
+That's it! Continue using Livewire as you would normally, and enjoy significant performance improvements.
 
 ## Testing
 
@@ -85,8 +68,8 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
-- [All Contributors](../../contributors)
+-   [James Joffe](https://github.com/drjamesj)
+-   [All Contributors](../../contributors)
 
 ## License
 
