@@ -39,7 +39,7 @@ class LivewireBeaconServiceProvider extends PackageServiceProvider
         );
 
         $url = $route->uri();
-        $url = (string) str($url)->when(!str($url)->isUrl(), fn ($url) => $url->start('/'));
+        $url = (string) str($url)->when(! str($url)->isUrl(), fn ($url) => $url->start('/'));
 
         LivewireBeacon::$javascriptRoute = $url;
     }

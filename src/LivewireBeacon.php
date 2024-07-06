@@ -10,7 +10,7 @@ class LivewireBeacon
 
     public static function livewireBeaconScripts($expression)
     {
-        return '{!! \Executable\LivewireBeacon\LivewireBeacon::scripts(' . $expression . ') !!}';
+        return '{!! \Executable\LivewireBeacon\LivewireBeacon::scripts('.$expression.') !!}';
     }
 
     public static function scripts($options = [])
@@ -29,8 +29,8 @@ class LivewireBeacon
     {
         return Utils::pretendResponseIsFile(
             config('app.debug')
-                ? __DIR__ . '/../dist/beacon.js'
-                : __DIR__ . '/../dist/beacon.min.js'
+                ? __DIR__.'/../dist/beacon.js'
+                : __DIR__.'/../dist/beacon.min.js'
         );
     }
 }

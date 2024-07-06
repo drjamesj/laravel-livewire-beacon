@@ -2,9 +2,8 @@
 
 namespace Executable\LivewireBeacon\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use Executable\LivewireBeacon\LivewireBeaconServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

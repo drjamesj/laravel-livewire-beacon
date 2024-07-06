@@ -21,7 +21,7 @@ class ReverbMessageReceivedListener
     public function handle(MessageReceived $event): void
     {
         $message = json_decode($event->message, associative: true);
-        if (!isset($message['event']) || $message['event'] !== config('livewire-beacon.events.inbound')) {
+        if (! isset($message['event']) || $message['event'] !== config('livewire-beacon.events.inbound')) {
             return;
         }
 
