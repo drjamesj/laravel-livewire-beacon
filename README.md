@@ -1,5 +1,8 @@
 # Livewire Beacon
 
+> **Warning**
+> This project is currently experimental and should only be used in production at your own risk.
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/executable/laravel-livewire-beacon.svg?style=flat-square)](https://packagist.org/packages/executable/laravel-livewire-beacon)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/drjamesj/laravel-livewire-beacon/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/drjamesj/laravel-livewire-beacon/actions?query=workflow%3Arun-tests+branch%3Amain)
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/drjamesj/laravel-livewire-beacon/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/drjamesj/laravel-livewire-beacon/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
