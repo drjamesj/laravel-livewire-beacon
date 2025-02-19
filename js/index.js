@@ -35,6 +35,7 @@ document.addEventListener("livewire:init", () => {
             return new Promise((resolve, reject) => {
                 Echo.connector.pusher.connection.send(
                     JSON.stringify({
+                        channel: channelName,
                         event: inboundEvent,
                         data: {
                             id,
