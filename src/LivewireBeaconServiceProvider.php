@@ -3,15 +3,29 @@
 namespace Executable\LivewireBeacon;
 
 use Executable\LivewireBeacon\Listeners\ReverbMessageReceivedListener;
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Config\Repository;
+use Illuminate\Events\Dispatcher;
+use Illuminate\Routing\Router;
+use Illuminate\View\Compilers\BladeCompiler;
 use Laravel\Reverb\Events\MessageReceived;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LivewireBeaconServiceProvider extends PackageServiceProvider
 {
+    public BladeCompiler $blade;
+    public Repository $config;
+    public Dispatcher $event;
+    public Router $route;
+
+    public function boot(BladeCompiler $blade, Repository $config, Dispatcher $event, Router $route): void
+    {
+        $this->blade = $blade;
+        $this->config = $config;
+        $this->event = $event;
+        $this->route = $route;
+    }
+    
     public function configurePackage(Package $package): void
     {
         /*
@@ -26,24 +40,23 @@ class LivewireBeaconServiceProvider extends PackageServiceProvider
 
     public function packageBooted()
     {
-        Blade::directive('livewireBeaconScripts', [LivewireBeacon::class, 'livewireBeaconScripts']);
+        $this->blade->directive('livewireBeaconScripts', [LivewireBeacon::class, 'livewireBeaconScripts']);
 
-        if (! config('livewire-beacon.enabled', true)) {
+        if (! $this->config->get('livewire-beacon.enabled', true)) {
             return;
         }
 
-        Event::listen(
+        $this->event->listen(
             MessageReceived::class,
             ReverbMessageReceivedListener::class,
         );
 
-        $route = Route::get(
-            config('app.debug') ? '/livewire/beacon.js' : 'livewire/beacon.min.js',
+        $route = $this->route->get(
+            $this->config->get('app.debug') ? '/livewire/beacon.js' : 'livewire/beacon.min.js',
             [LivewireBeacon::class, 'returnJavascriptAsFile']
         );
 
-        $url = $route->uri();
-        $url = (string) str($url)->when(! str($url)->isUrl(), fn ($url) => $url->start('/'));
+        $url = str($route->uri())->when(! str($url)->isUrl(), fn ($url) => $url->start('/'))->toString();
 
         LivewireBeacon::$javascriptRoute = $url;
     }
