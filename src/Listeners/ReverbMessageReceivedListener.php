@@ -2,37 +2,36 @@
 
 namespace Executable\LivewireBeacon\Listeners;
 
+use Illuminate\Config\Repository;
+use Illuminate\Http\Request;
 use Laravel\Reverb\Events\MessageReceived;
 use Livewire\Mechanisms\HandleRequests\HandleRequests;
 
 class ReverbMessageReceivedListener
 {
-    /**
-     * Create the event listener.
-     */
-    public function __construct()
+    public function __construct(
+        public Request $request,
+        public HandleRequests $handlesRequests,
+        public Repository $config,
+    )
     {
         //
     }
 
-    /**
-     * Handle the event.
-     */
     public function handle(MessageReceived $event): void
     {
         $message = json_decode($event->message, associative: true);
-        if (! isset($message['event']) || $message['event'] !== config('livewire-beacon.events.inbound')) {
+        if (! isset($message['event']) || $message['event'] !== $this->config->get('livewire-beacon.events.inbound')) {
             return;
         }
 
-        app('request')->merge([
+        $this->request->merge([
             'components' => [
                 $message['data']['payload'] ?? [],
             ],
         ]);
 
-        $livewireHandleRequests = app()->make(HandleRequests::class);
-        $result = $livewireHandleRequests->handleUpdate();
+        $result = $this->handleRequests->handleUpdate();
 
         $event->connection->send(json_encode([
             'event' => 'BeaconOutboundEvent',
@@ -40,7 +39,7 @@ class ReverbMessageReceivedListener
                 'id' => $message['data']['id'],
                 'result' => $result,
             ]),
-            'channel' => config('livewire-beacon.channel'),
+            'channel' => $this->config->get('livewire-beacon.channel'),
         ]));
     }
 }
